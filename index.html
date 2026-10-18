@@ -331,7 +331,13 @@
       }
       .contact { padding: 25px; }
       .contact-links { gap: 2px; margin-top: 14px; }
-      .contact-links .button { margin-top: 0 !important; padding: 10px 0; line-height: 1.3; text-align: left; }
+      .contact { text-align: left; }
+      .contact .small,
+      .contact h2,
+      .contact p,
+      .contact-links { text-align: left; margin-left: 0; }
+      .contact-links { align-items: flex-start; width: 100%; }
+      .contact-links .button { display: block; width: 100%; box-sizing: border-box; margin: 0 !important; padding: 10px 0; line-height: 1.3; text-align: left; }
     }
   </style>
 </head>
