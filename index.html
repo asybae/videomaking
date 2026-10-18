@@ -157,7 +157,8 @@
     .project:nth-child(2) { background: #d9cfe4; }
     .project:nth-child(3) { background: #e8e0d5; }
     .project:nth-child(4) { background: #cfc5b9; }
-    .project-video .project-caption strong { font: 34px Georgia, serif; line-height: 1.12; overflow-wrap: anywhere; }
+    .project-video .project-caption strong { display: block; width: 100%; margin: 0; padding: 0; text-align: left; font: 34px/1.12 Georgia, serif; letter-spacing: -1px; overflow-wrap: anywhere; }
+    .project-video .project-caption span { width: 100%; margin: 0; padding: 0; text-align: left; align-self: flex-start; }
     .project-video .project-caption span { display: block; }
     .project strong { font: 34px Georgia, serif; }
     .project span { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
@@ -224,7 +225,8 @@
       section { padding: 24px 16px; }
       .grid { grid-template-columns: 1fr; }
       .project-video .project-caption { padding: 18px 20px 22px; }
-      .project-video .project-caption strong { font-size: clamp(29px, 8vw, 34px); line-height: 1.12; letter-spacing: -1px; }
+      .project-video .project-caption strong { display: block; width: 100%; margin: 0; padding: 0; text-align: left; font-size: clamp(29px, 8vw, 34px); line-height: 1.12; letter-spacing: -1px; }
+      .project-video .project-caption span { width: 100%; margin: 0; padding: 0; text-align: left; align-self: flex-start; }
       .contact { padding: 25px; }
     }
   </style>
