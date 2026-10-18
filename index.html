@@ -119,6 +119,7 @@
     .featured-title { font-size: clamp(36px, 5.5vw, 56px); letter-spacing: -2px; white-space: nowrap; }
     .featured-title em { color: #9381ae; font-family: Georgia, serif; font-weight: 500; }
     .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    #featured .grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; align-items: start; }
     .project {
       min-height: 220px;
       padding: 24px;
@@ -229,6 +230,8 @@
       section { padding: 24px 16px; }
       .featured-title { font-size: clamp(25px, 6.3vw, 39px); letter-spacing: -1.5px; white-space: nowrap; }
       .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      #featured .grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px; }
+      #featured .project-video { width: 100%; min-width: 0; }
       .project { min-height: 150px; padding: 10px; }
       .project strong { font-size: clamp(15px, 4vw, 22px); overflow-wrap: anywhere; }
       .project span { font-size: 8px; letter-spacing: .4px; }
