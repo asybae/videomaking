@@ -125,6 +125,32 @@
       flex-direction: column;
       justify-content: space-between;
     }
+    .project-video {
+      padding: 0;
+      min-height: 0;
+      overflow: hidden;
+      background: #e8e0d5;
+    }
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      background: #201e1d;
+    }
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .project-caption {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
     .project:nth-child(2) { background: #d9cfe4; }
     .project:nth-child(3) { background: #e8e0d5; }
     .project:nth-child(4) { background: #cfc5b9; }
@@ -216,12 +242,18 @@
   <section id="work">
     <div class="small">ТОП-6 НАЙКРАЩИХ ВІДЕО</div>
     <h2>Мої роботи</h2>
-    <p>Ці блоки поки що демонстраційні. Пізніше замінимо їх на твої справжні відео.</p>
     <div class="grid">
-      <div class="project"><strong>Brand films</strong><span>01 / Відео для брендів</span></div>
-      <div class="project"><strong>UGC stories</strong><span>02 / Контент для брендів</span></div>
-      <div class="project"><strong>People & moments</strong><span>03 / Люди та події</span></div>
-      <div class="project"><strong>Edit room</strong><span>04 / Монтаж відео</span></div>
+      <div class="project project-video">
+        <div class="video-frame">
+          <iframe src="https://player.vimeo.com/video/1237010940?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ніша: косметологія" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="project-caption"><strong>Ніша: косметологія</strong><span>01 / Відео для бренду</span></div>
+      </div>
+      <div class="project"><strong>Наступне відео</strong><span>02 / Додамо пізніше</span></div>
+      <div class="project"><strong>Наступне відео</strong><span>03 / Додамо пізніше</span></div>
+      <div class="project"><strong>Наступне відео</strong><span>04 / Додамо пізніше</span></div>
+      <div class="project"><strong>Наступне відео</strong><span>05 / Додамо пізніше</span></div>
+      <div class="project"><strong>Наступне відео</strong><span>06 / Додамо пізніше</span></div>
     </div>
   </section>
 
