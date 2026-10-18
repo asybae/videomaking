@@ -148,6 +148,20 @@
       overflow-wrap: normal;
       word-break: normal;
     }
+    @media (min-width: 601px) {
+      #featured .grid {
+        grid-template-columns: repeat(3, minmax(0, 260px)) !important;
+        justify-content: center;
+        gap: 22px;
+      }
+      #featured .project-video {
+        height: auto;
+        align-self: start;
+      }
+      #featured .video-preview {
+        aspect-ratio: 9 / 16;
+      }
+    }
     .video-frame {
       position: relative;
       width: 100%;
