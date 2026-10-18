@@ -464,11 +464,11 @@
       const id = button.dataset.vimeoId;
       const img = button.querySelector('img');
       try {
-        const response = await fetch('https://vimeo.com/api/oembed.json?url=' + encodeURIComponent('https://vimeo.com/' + id));
+        const response = await fetch('https://vimeo.com/api/oembed.json?width=1280&url=' + encodeURIComponent('https://vimeo.com/' + id));
         if (!response.ok) throw new Error('Thumbnail unavailable');
         const data = await response.json();
         if (data.thumbnail_url) {
-          img.src = data.thumbnail_url.replace(/_[0-9]+x[0-9]+(?=\.)/, '_640');
+          img.src = data.thumbnail_url;
           img.onload = () => img.classList.add('loaded');
           img.onerror = () => { img.src = data.thumbnail_url; img.onload = () => img.classList.add('loaded'); };
         }
