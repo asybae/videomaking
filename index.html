@@ -118,7 +118,7 @@
     h2 { font-size: clamp(34px, 7vw, 62px); font-weight: 500; letter-spacing: -3px; }
     .featured-title { font-size: clamp(36px, 5.5vw, 56px); letter-spacing: -2px; white-space: nowrap; }
     .featured-title em { color: #9381ae; font-family: Georgia, serif; font-weight: 500; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
     .project {
       min-height: 220px;
       padding: 24px;
@@ -135,7 +135,7 @@
     }
     .video-frame {
       position: relative;
-      width: min(100%, 280px);
+      width: 100%;
       margin: 0 auto;
       aspect-ratio: 9 / 16;
       overflow: hidden;
@@ -163,6 +163,8 @@
     .project-video .project-caption span { width: 100%; margin: 0; padding: 0; text-align: left; align-self: flex-start; }
     .project-video .project-caption span { display: block; }
     .project strong { font: 34px Georgia, serif; }
+    .project-video .project-caption { padding: 14px; }
+    .project-video .project-caption strong { font-size: clamp(18px, 2.4vw, 28px); line-height: 1.1; letter-spacing: -1px; }
     .project span { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
     .contact { background: #201e1d; color: #f4f0e9; padding: 40px; }
     .contact p { color: #c7bfb5; }
@@ -226,7 +228,13 @@
       }
       section { padding: 24px 16px; }
       .featured-title { font-size: clamp(25px, 6.3vw, 39px); letter-spacing: -1.5px; white-space: nowrap; }
-      .grid { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .project { min-height: 150px; padding: 10px; }
+      .project strong { font-size: clamp(15px, 4vw, 22px); overflow-wrap: anywhere; }
+      .project span { font-size: 8px; letter-spacing: .4px; }
+      .project-video .project-caption { padding: 8px; gap: 5px; }
+      .project-video .project-caption strong { font-size: clamp(13px, 3.5vw, 18px); letter-spacing: -.5px; }
+      .project-video .project-caption span { font-size: 7px; letter-spacing: .3px; }
       .project-video .project-caption { padding: 18px 20px 22px; }
       .project-video .project-caption strong { display: block; width: 100%; margin: 0; padding: 0; text-align: left; font-size: clamp(29px, 8vw, 34px); line-height: 1.12; letter-spacing: -1px; }
       .project-video .project-caption span { width: 100%; margin: 0; padding: 0; text-align: left; align-self: flex-start; }
