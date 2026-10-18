@@ -120,6 +120,58 @@
     .featured-title em { color: #9381ae; font-family: Georgia, serif; font-weight: 500; }
     .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
     #featured .grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; align-items: start; }
+    /* Portfolio videos use the same preview card as the featured videos */
+    #work .category-block .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+      gap: 16px;
+    }
+    #work .category-block .project-video {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      padding: 0;
+      overflow: hidden;
+      background: #e8e0d5;
+    }
+    #work .category-block .video-preview {
+      display: block;
+      flex: 0 0 auto;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      padding: 0;
+      border: 0;
+      overflow: hidden;
+    }
+    #work .category-block .project-caption {
+      display: flex;
+      flex: 1 0 auto;
+      min-height: 62px;
+      width: 100%;
+      padding: 18px 20px;
+      background: #e8e0d5;
+    }
+    #work .category-block .video-label {
+      display: block;
+      width: 100%;
+      font: 400 12px/1.4 Arial, sans-serif;
+      letter-spacing: .35px;
+      text-transform: none;
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 600px) {
+      #work .category-block .grid { gap: 8px; }
+      #work .category-block .project-caption {
+        min-height: 58px;
+        padding: 12px 8px;
+      }
+      #work .category-block .video-label {
+        font: 400 clamp(8px, 2.2vw, 10px)/1.35 Arial, sans-serif;
+        letter-spacing: 0;
+      }
+    }
     .category-block { margin-top: 42px; }
     .category-title {
       margin: 0 0 18px;
