@@ -116,6 +116,8 @@
       font-size: 13px;
     }
     h2 { font-size: clamp(34px, 7vw, 62px); font-weight: 500; letter-spacing: -3px; }
+    .featured-title { font-size: clamp(28px, 4.5vw, 48px); letter-spacing: -2px; white-space: nowrap; }
+    .featured-title em { color: #9381ae; font-family: Georgia, serif; font-weight: 500; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .project {
       min-height: 220px;
@@ -223,6 +225,7 @@
         padding: 18px 22px;
       }
       section { padding: 24px 16px; }
+      .featured-title { font-size: clamp(20px, 5.15vw, 31px); letter-spacing: -1.3px; white-space: nowrap; }
       .grid { grid-template-columns: 1fr; }
       .project-video .project-caption { padding: 18px 20px 22px; }
       .project-video .project-caption strong { display: block; width: 100%; margin: 0; padding: 0; text-align: left; font-size: clamp(29px, 8vw, 34px); line-height: 1.12; letter-spacing: -1px; }
@@ -251,7 +254,7 @@
 
   <section id="featured">
     <div class="small">ОБРАНЕ</div>
-    <h2>ТОП-6 НАЙКРАЩИХ ВІДЕО</h2>
+    <h2 class="featured-title">ТОП-6 НАЙКРАЩИХ <em>ВІДЕО</em></h2>
     <div class="grid">
       <div class="project project-video">
         <div class="video-frame">
