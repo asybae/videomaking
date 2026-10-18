@@ -163,6 +163,68 @@
       height: 100%;
       border: 0;
     }
+    .video-preview {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(145deg, #cfc5b9, #d9cfe4);
+    }
+    .video-preview img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    .video-preview img.loaded { opacity: 1; }
+    .preview-play {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(25,24,23,.88);
+      color: white;
+      font-size: 19px;
+      padding-left: 3px;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .video-preview:hover .preview-play { transform: translate(-50%, -50%) scale(1.06); background: #201e1d; }
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(20,19,18,.88);
+    }
+    .video-modal.open { display: flex; }
+    .video-modal-inner { position: relative; width: min(92vw, 460px); aspect-ratio: 9 / 16; max-height: 88vh; background: #111; }
+    .video-modal iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-modal-close {
+      position: absolute;
+      z-index: 2;
+      top: -44px;
+      right: 0;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font: 32px/1 Arial, sans-serif;
+      cursor: pointer;
+    }
+
     .project-caption {
       width: 100%;
       min-width: 0;
@@ -290,21 +352,24 @@
     <h2 class="featured-title">ТОП-6 НАЙКРАЩИХ <em>ВІДЕО</em></h2>
     <div class="grid">
       <div class="project project-video">
-        <div class="video-frame">
-          <iframe src="https://player.vimeo.com/video/1237010940?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ніша: косметологія" loading="lazy" allowfullscreen></iframe>
-        </div>
+        <button class="video-preview" type="button" data-vimeo-id="1237010940" aria-label="Відтворити відео: косметологія">
+          <img alt="" loading="lazy">
+          <span class="preview-play" aria-hidden="true">▶</span>
+        </button>
         <div class="project-caption"><span class="video-label">01 / косметологія</span></div>
       </div>
       <div class="project project-video">
-        <div class="video-frame">
-          <iframe src="https://player.vimeo.com/video/1237016342?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Ніша: рекламне відео продукту" loading="lazy" allowfullscreen></iframe>
-        </div>
+        <button class="video-preview" type="button" data-vimeo-id="1237016342" aria-label="Відтворити рекламне відео продукту">
+          <img alt="" loading="lazy">
+          <span class="preview-play" aria-hidden="true">▶</span>
+        </button>
         <div class="project-caption"><span class="video-label">02 / рекламне відео продукту</span></div>
       </div>
       <div class="project project-video">
-        <div class="video-frame">
-          <iframe src="https://player.vimeo.com/video/1237029211?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Відео № 3" loading="lazy" allowfullscreen></iframe>
-        </div>
+        <button class="video-preview" type="button" data-vimeo-id="1237029211" aria-label="Відтворити відео 3">
+          <img alt="" loading="lazy">
+          <span class="preview-play" aria-hidden="true">▶</span>
+        </button>
         <div class="project-caption"><span class="video-label">03 / відео</span></div>
       </div>
       <div class="project"><strong>Відео № 4</strong><span>04 / Додамо пізніше</span></div>
@@ -341,6 +406,51 @@
     </div>
   </section>
 
+  <div class="video-modal" id="videoModal" aria-hidden="true">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" type="button" aria-label="Закрити відео">×</button>
+      <iframe title="Відео портфоліо" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll('.video-preview[data-vimeo-id]').forEach(async (button) => {
+      const id = button.dataset.vimeoId;
+      const img = button.querySelector('img');
+      try {
+        const response = await fetch('https://vimeo.com/api/oembed.json?url=' + encodeURIComponent('https://vimeo.com/' + id));
+        if (!response.ok) throw new Error('Thumbnail unavailable');
+        const data = await response.json();
+        if (data.thumbnail_url) {
+          img.src = data.thumbnail_url.replace(/_[0-9]+x[0-9]+(?=\.)/, '_640');
+          img.onload = () => img.classList.add('loaded');
+          img.onerror = () => { img.src = data.thumbnail_url; img.onload = () => img.classList.add('loaded'); };
+        }
+      } catch (error) {
+        button.classList.add('preview-unavailable');
+        button.setAttribute('aria-label', 'Превʼю недоступне. Перевірте доступ до відео Vimeo.');
+      }
+    });
+    const modal = document.getElementById('videoModal');
+    const modalFrame = modal.querySelector('iframe');
+    function closeVideo() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalFrame.src = '';
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.video-preview').forEach(button => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.vimeoId;
+        modalFrame.src = 'https://player.vimeo.com/video/' + id + '?autoplay=1&title=0&byline=0&portrait=0';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    modal.querySelector('.video-modal-close').addEventListener('click', closeVideo);
+    modal.addEventListener('click', event => { if (event.target === modal) closeVideo(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeVideo(); });
+  </script>
   <footer>© ASYBAE / 2026</footer>
 </body>
 </html>
