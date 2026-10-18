@@ -147,6 +147,8 @@
       border: 0;
     }
     .project-caption {
+      width: 100%;
+      min-width: 0;
       padding: 18px 20px;
       display: flex;
       flex-direction: column;
@@ -155,6 +157,8 @@
     .project:nth-child(2) { background: #d9cfe4; }
     .project:nth-child(3) { background: #e8e0d5; }
     .project:nth-child(4) { background: #cfc5b9; }
+    .project-video .project-caption strong { font: 34px Georgia, serif; line-height: 1.12; overflow-wrap: anywhere; }
+    .project-video .project-caption span { display: block; }
     .project strong { font: 34px Georgia, serif; }
     .project span { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
     .contact { background: #201e1d; color: #f4f0e9; padding: 40px; }
@@ -219,6 +223,8 @@
       }
       section { padding: 24px 16px; }
       .grid { grid-template-columns: 1fr; }
+      .project-video .project-caption { padding: 18px 20px 22px; }
+      .project-video .project-caption strong { font-size: clamp(29px, 8vw, 34px); line-height: 1.12; letter-spacing: -1px; }
       .contact { padding: 25px; }
     }
   </style>
