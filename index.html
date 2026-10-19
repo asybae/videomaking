@@ -260,6 +260,7 @@
     #price .calc-submit{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:17px 20px;border:1px solid #9381ae99;border-radius:14px;background:#29242f;color:#fff;text-decoration:none;font-size:13px;box-shadow:0 8px 24px #503d652b,0 0 22px #9381ae20;transition:transform .2s,box-shadow .2s}
     #price .calc-submit:hover{transform:translateY(-2px);box-shadow:0 12px 30px #503d653b,0 0 28px #9381ae30}
     #price .calc-submit span{font-size:18px;color:#d9cfe4}
+    #price .calc-other{padding:22px;border:1px solid #9381ae45;border-radius:18px;background:linear-gradient(135deg,#ffffffb8,#d9cfe444);animation:calcFade .3s ease}#price .calc-other-mark{display:inline-block;margin-bottom:12px;color:#9381ae;font-size:25px;text-shadow:0 0 18px #9381ae66}#price .calc-other-title{font:400 clamp(23px,3.5vw,30px)/1.2 Georgia,serif;color:#29242f}#price .calc-other p{margin:10px 0 18px;font-size:13px;line-height:1.6;color:#716a78}#price .calc-other .calc-submit{margin-top:0}
     #price .calc-foot{margin-top:23px;font-size:8px;color:#a49aa7}
     @keyframes calcFade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
     @keyframes calcSpark{50%{transform:rotate(45deg) scale(1.12);opacity:.65}}
@@ -815,6 +816,7 @@
         <option value="conference">Конференція / конгрес / форум</option>
         <option value="youtube">YouTube</option>
         <option value="edit">Монтаж готового матеріалу</option>
+        <option value="other">Інше — мого формату немає у списку</option>
       </select><span>↘</span></div>
       <div id="calcDynamic" class="calc-dynamic"></div>
       <div class="calc-result"><div><span class="calc-result-kicker">ПОПЕРЕДНЯ ВАРТІСТЬ</span><strong id="calcTotal">Обери параметри</strong><p id="calcNote">Фінальні деталі узгодимо особисто.</p></div><div class="calc-spark" aria-hidden="true">✳</div></div>
@@ -873,7 +875,7 @@
       function field(title,name,items,type="radio"){const w=document.createElement("div");w.className="calc-group";const h=document.createElement("div");h.className="calc-question";h.textContent=title;w.appendChild(h);if(type==="number"){const i=document.createElement("input");i.className="calc-input";i.type="number";i.min=1;i.max=24;i.value=items||1;i.name=name;i.setAttribute("aria-label",title);w.appendChild(i)}else{const l=document.createElement("div");l.className="calc-choice-list";items.forEach((it,n)=>{const lab=document.createElement("label");lab.className="calc-choice";const i=document.createElement("input");i.type=type;i.name=name;i.value=it[0];i.checked=n===0;const t=document.createElement("span");t.textContent=it[1];lab.append(i,t);l.appendChild(lab)});w.appendChild(l)}box.appendChild(w)}
       const v=name=>box.querySelector('[name="'+name+'"]:checked')?.value||"";
       const num=name=>Math.max(1,Number(box.querySelector('[name="'+name+'"]')?.value||1));
-      function render(){box.innerHTML="";const s=service.value;bar.style.width=(s==="talk"||s==="fashion")?"45%":"100%";
+      function render(){box.innerHTML="";const s=service.value;bar.style.width=(s==="talk"||s==="fashion")?"45%":"100%";if(s==="other"){box.innerHTML='<div class="calc-other"><span class="calc-other-mark">✳</span><div class="calc-other-title">Не знайшла потрібний формат?</div><p>Напиши мені в Telegram — розберемо твою ідею та я зорієнтую за вартістю.</p><a class="calc-submit" href="https://t.me/Asybae?text='+encodeURIComponent("Привіт! Не знайшла потрібний формат відео в калькуляторі. Хочу обговорити свій проєкт і дізнатися вартість.")+'" target="_blank" rel="noopener">Написати в Telegram <span>↗</span></a></div>';total.textContent="Індивідуальний прорахунок";note.textContent="Вартість залежить від формату та задачі проєкту.";document.getElementById("calcSend").style.display="none";return;}document.getElementById("calcSend").style.display="flex";
         if(s==="talk"){field("Кількість розмовних відео","qty",[["1","1 відео"],["3","3 відео"],["5","5 відео"],["10","10 відео"]]);field("Тип монтажу","style",[["basic","Базовий монтаж · 850 грн / відео"],["dynamic","Динамічний монтаж · 1 850 грн / відео"]])}
         else if(s==="fashion"){field("Оберіть формат","fashionType",[["one","1 відео до 60 секунд · 3 000 грн"],["three","3 відео до 20 секунд · 3 000 грн"]])}
         else if(s==="beauty"){field("Формат відео","beautyType",[["expert","Експертне до 60 секунд · 1 850 грн"],["procedure","Естетичне відео процедури · 3 500 грн"],["seminar","Відео семінару · 150 €"]]);field("Потрібна окрема зйомка всього семінару без монтажу?","fullSeminar",[["no","Ні"],["yes","Так · +100 €"]])}
