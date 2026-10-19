@@ -597,8 +597,8 @@
     }
     #contact .contact-photo {
       display: block;
-      width: min(82%, 270px);
-      height: 340px;
+      width: min(92%, 300px);
+      height: 360px;
       object-fit: cover;
       object-position: center 25%;
       border: 0;
@@ -606,8 +606,11 @@
       padding: 0;
       background: transparent;
       box-shadow: none;
-      -webkit-mask-image: radial-gradient(ellipse 75% 76% at 50% 47%, #000 48%, rgba(0,0,0,.92) 61%, rgba(0,0,0,.42) 78%, transparent 100%);
-      mask-image: radial-gradient(ellipse 75% 76% at 50% 47%, #000 48%, rgba(0,0,0,.92) 61%, rgba(0,0,0,.42) 78%, transparent 100%);
+      /* Fade all four edges into the background instead of showing a rectangular photo */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 17%, #000 78%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 17%, #000 78%, transparent 100%);
+      mask-composite: intersect;
     }
     @media (max-width: 760px) {
       #contact .contact {
@@ -625,8 +628,8 @@
         background: radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(213,201,231,.52) 48%, transparent 74%);
       }
       #contact .contact-photo {
-        width: min(72%, 220px);
-        height: 260px;
+        width: min(78%, 245px);
+        height: 290px;
         object-position: center 25%;
       }
     }
