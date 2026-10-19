@@ -94,7 +94,66 @@
       pointer-events: none;
       background: linear-gradient(90deg, #f4f0e9 0%, #f4f0e9 29%, rgba(244,240,233,.96) 37%, rgba(244,240,233,.72) 46%, rgba(244,240,233,.22) 57%, transparent 70%);
     }
-    .hero .small, .hero h1, .hero p, .hero .button { max-width: 570px; }
+    .hero .small, .hero h1, .hero p, .hero .hero-actions { max-width: 570px; }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .hero .hero-button {
+      position: relative;
+      isolation: isolate;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 54px;
+      margin: 0;
+      padding: 16px 22px;
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: .2px;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+    }
+    .hero .hero-button-primary {
+      color: #fff;
+      background: #28232d;
+      border: 1px solid rgba(147,129,174,.78);
+      box-shadow: 0 0 0 1px rgba(147,129,174,.12), 0 8px 24px rgba(104,83,133,.18), inset 0 1px 0 rgba(255,255,255,.12);
+    }
+    .hero .hero-button-primary::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(110deg, rgba(147,129,174,.52), rgba(255,255,255,.06), rgba(147,129,174,.42));
+      filter: blur(13px);
+      opacity: .48;
+      transition: opacity .25s ease;
+    }
+    .hero .hero-button-secondary {
+      color: #29242f;
+      background: rgba(255,255,255,.38);
+      border: 1px solid rgba(147,129,174,.62);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 5px 18px rgba(104,83,133,.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .hero .hero-button span { font-size: 16px; transition: transform .25s ease; }
+    .hero .hero-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 1px rgba(147,129,174,.18), 0 12px 30px rgba(104,83,133,.22);
+    }
+    .hero .hero-button-primary:hover::before { opacity: .8; }
+    .hero .hero-button:hover span { transform: translate(2px,-2px); }
+    .hero .hero-button:focus-visible { outline: 2px solid #9381ae; outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero .hero-button, .hero .hero-button span, .hero .hero-button-primary::before { transition: none; }
+    }
+
     .hero p { color: #514c47; }
     .small { text-transform: uppercase; letter-spacing: 3px; font-size: 11px; }
     h1 {
@@ -387,11 +446,17 @@
         margin: 0;
       }
       .hero p + p { margin-top: 18px; }
-      .hero .button {
-        display: block;
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
         width: 100%;
-        margin-top: 28px;
-        padding: 18px 22px;
+        margin-top: 24px;
+        gap: 12px;
+      }
+      .hero .hero-button {
+        width: 100%;
+        min-height: 56px;
+        padding: 17px 20px;
       }
       section { padding: 24px 16px; }
       .featured-title { font-size: clamp(25px, 6.3vw, 39px); letter-spacing: -1.5px; white-space: nowrap; }
@@ -442,7 +507,10 @@
     <div class="small">Відеографія · монтаж · контент</div>
     <h1>Ефект WOW<br>від відео з<br><em>першого кадру.</em></h1>
     <p>Я - Настюша. Твій провідник у світ якісних професійних відео, які я створюю для брендів, бізнесів, експертів або для особистих потреб.<br><br>Я не просто знімаю відео за вашою ідеєю - я роблю відео під ключ.<br><br>Звертаючись до мене, вам не потрібно писати сценарії чи шукати локації.<br>Я беру на себе все - від ідеї до монтажу!<br><br>А ви просто насолоджуєтеся результатом 🙌🏻</p>
-    <a class="button" href="#work">Дивитися роботи ↗</a>
+    <div class="hero-actions">
+      <a class="button hero-button hero-button-primary" href="#work">Дивитися роботи <span aria-hidden="true">↗</span></a>
+      <a class="button hero-button hero-button-secondary" href="#contact">Обговорити проєкт <span aria-hidden="true">↗</span></a>
+    </div>
   </section>
 
   <section id="featured">
