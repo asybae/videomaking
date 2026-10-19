@@ -221,6 +221,19 @@
       text-transform: none;
       overflow-wrap: anywhere;
     }
+    @media (max-width: 760px) {
+      #contact { padding-top: 12px; padding-bottom: 12px; }
+      .contact { grid-template-columns: 1fr; gap: 0; padding: 30px 22px 14px; border-radius: 22px; }
+      .contact h2 { font-size: clamp(38px, 10vw, 58px); }
+      .contact p { font-size: 14px; }
+      .contact-links { gap: 9px; }
+      .contact-links .contact-social { padding: 12px 14px; font-size: 13px; }
+      .contact-portrait { min-height: 275px; margin-top: 4px; }
+      .portrait-avatar { transform:scale(.88); transform-origin:bottom center; }
+      .contact-cursor { left:28%; bottom:10%; }
+      .contact::before { width:300px; height:300px; right:2%; top:43%; }
+      .contact::after { width:230px; height:230px; right:10%; top:50%; }
+    }
     @media (max-width: 600px) {
       #work .category-block .grid { gap: 8px; }
       #work .category-block .project-caption {
@@ -425,13 +438,61 @@
     .project-video .project-caption { padding: 14px; }
     .project-video .project-caption strong { font-size: clamp(18px, 2.4vw, 28px); line-height: 1.1; letter-spacing: -1px; }
     .project span { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
-    .contact { background: #201e1d; color: #f4f0e9; padding: 40px; }
-    .contact p { color: #c7bfb5; }
-    .contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 22px; }
-    .contact-links .button { margin-top: 0; }
-    .contact-links .contact-social { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
-    .social-icon { width: 20px; height: 20px; flex: 0 0 20px; display: block; }
-    .contact-social span { display: inline-block; }
+    #contact { padding-top: 24px; padding-bottom: 24px; }
+    .contact {
+      position: relative; isolation: isolate; overflow: hidden;
+      display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr);
+      align-items: center; gap: 24px; min-height: 410px; padding: clamp(28px, 5vw, 64px);
+      border: 1px solid rgba(147,129,174,.28); border-radius: 28px;
+      color: #201e1d;
+      background: radial-gradient(ellipse at 78% 35%, rgba(191,174,218,.52), transparent 36%),
+                  radial-gradient(ellipse at 8% 100%, rgba(255,255,255,.9), transparent 40%),
+                  linear-gradient(120deg,#fbf8f3 0%,#f2edf4 55%,#ebe3f0 100%);
+      box-shadow: 0 24px 70px rgba(61,45,73,.10), inset 0 1px 0 rgba(255,255,255,.9);
+    }
+    .contact::before, .contact::after { content:""; position:absolute; z-index:-1; pointer-events:none; border:1px solid rgba(147,129,174,.35); border-radius:50%; }
+    .contact::before { width:390px; height:390px; right:4%; top:2%; animation: contact-orbit 22s linear infinite; }
+    .contact::after { width:290px; height:290px; right:11%; top:15%; border-style:dashed; animation: contact-orbit 30s linear infinite reverse; }
+    .contact-copy { position:relative; z-index:2; max-width:620px; }
+    .contact .small { color:#74677f; }
+    .contact h2 { max-width:650px; margin:22px 0; font-size:clamp(38px,5.6vw,76px); line-height:.98; letter-spacing:-.065em; }
+    .contact h2 span { color:#9381ae; }
+    .contact p { max-width:470px; color:#655d68; font-size:16px; line-height:1.65; }
+    .contact-links { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:28px; }
+    .contact-links .button { margin-top:0; }
+    .contact-links .contact-social {
+      display:inline-flex; align-items:center; gap:10px; padding:13px 17px;
+      border:1px solid rgba(255,255,255,.9); border-radius:18px; color:#29242e;
+      background:rgba(255,255,255,.58); box-shadow:0 8px 25px rgba(73,55,86,.08), inset 0 1px 0 #fff;
+      backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+      text-decoration:none; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .contact-links .contact-social:hover { transform:translateY(-4px); background:#fff; box-shadow:0 14px 32px rgba(109,81,137,.19),0 0 0 4px rgba(147,129,174,.10); }
+    .social-icon { width:22px; height:22px; flex:0 0 22px; display:block; }
+    .contact-social span { display:inline-block; }
+    .contact-portrait { position:relative; min-height:340px; display:flex; align-items:flex-end; justify-content:center; align-self:stretch; }
+    .portrait-halo { position:absolute; width:min(100%,370px); aspect-ratio:1; bottom:10px; border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.92) 0%,rgba(193,173,218,.48) 48%,rgba(193,173,218,0) 72%); filter:blur(3px); }
+    .portrait-orbit { position:absolute; width:95%; aspect-ratio:1; bottom:4px; border:1px solid rgba(147,129,174,.55); border-radius:50%; transform:rotate(-22deg) scaleY(.72); }
+    .portrait-orbit::after { content:"✦"; position:absolute; top:7%; right:12%; color:#9381ae; font-size:26px; animation: contact-twinkle 2.8s ease-in-out infinite; }
+    .portrait-avatar { position:relative; z-index:1; width:min(100%,360px); height:300px; display:flex; align-items:flex-end; justify-content:center; animation: avatar-float 5s ease-in-out infinite; }
+    .avatar-body { position:absolute; bottom:0; width:88%; height:190px; border:2px solid #332a35; border-radius:48% 48% 18% 18% / 32% 32% 8% 8%; background:linear-gradient(135deg,#4a3d4b,#201e24 58%,#5b4b5f); box-shadow:inset 14px 0 0 rgba(255,255,255,.06),inset -12px 0 0 rgba(0,0,0,.12),0 22px 32px rgba(62,45,71,.22); }
+    .avatar-body::before { content:""; position:absolute; width:34%; height:72px; left:33%; top:-20px; background:#efc5b1; border:2px solid #332a35; border-radius:12px 12px 24px 24px; }
+    .avatar-neck { position:absolute; z-index:2; bottom:150px; width:76px; height:96px; border-radius:42% 42% 38% 38%; background:#efc5b1; border:2px solid #332a35; }
+    .avatar-hair { position:absolute; z-index:3; bottom:94px; width:222px; height:202px; border-radius:48% 48% 40% 40%; background:linear-gradient(90deg,#2c2222,#5b4238 45%,#241d20); box-shadow:inset 12px 0 rgba(255,255,255,.08),inset -12px 0 rgba(0,0,0,.14); }
+    .avatar-face { position:absolute; z-index:4; bottom:118px; width:151px; height:164px; border:2px solid #332a35; border-radius:46% 46% 48% 48% / 40% 40% 55% 55%; background:linear-gradient(100deg,#f2cdb8,#ffe0cc 54%,#e9b7a2); }
+    .avatar-face::before { content:""; position:absolute; top:58px; left:11px; width:126px; height:29px; border-radius:9px 9px 14px 14px; background:transparent; border:5px solid #29252b; box-shadow:inset 0 0 0 2px rgba(255,255,255,.25); }
+    .avatar-face::after { content:""; position:absolute; left:62px; top:91px; width:26px; height:21px; border-bottom:3px solid #b66f70; border-radius:0 0 50% 50%; }
+    .avatar-glasses { position:absolute; z-index:5; bottom:177px; width:176px; height:43px; display:flex; gap:5px; }
+    .avatar-glasses i { flex:1; border:4px solid #252329; border-radius:12px 12px 17px 17px; background:rgba(219,222,237,.22); box-shadow:inset 0 0 0 1px rgba(255,255,255,.5); }
+    .avatar-glasses::after { content:""; position:absolute; left:calc(50% - 5px); top:15px; width:10px; border-top:4px solid #252329; }
+    .avatar-bangs { position:absolute; z-index:6; bottom:245px; width:170px; height:62px; border-radius:70% 50% 20% 20%; border-top:19px solid #332526; transform:rotate(-5deg); }
+    .contact-cursor { position:absolute; z-index:5; left:37%; bottom:12%; color:#8c70a9; filter:drop-shadow(0 3px 2px rgba(80,58,99,.18)); animation: cursor-tap 5.5s ease-in-out infinite; pointer-events:none; }
+    .contact-cursor svg { width:36px; height:36px; fill:#fff; stroke:currentColor; stroke-width:1.6; }
+    @keyframes contact-orbit { to { transform:rotate(360deg); } }
+    @keyframes contact-twinkle { 0%,100% { opacity:.55; transform:scale(.85); } 50% { opacity:1; transform:scale(1.15); } }
+    @keyframes avatar-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-7px); } }
+    @keyframes cursor-tap { 0%,12%,100% { transform:translate(0,0) scale(1); opacity:.9; } 18% { transform:translate(12px,10px) scale(.82); opacity:1; } 25% { transform:translate(0,0) scale(1); } 45% { transform:translate(65px,30px) scale(1); } 53% { transform:translate(74px,39px) scale(.82); } 60% { transform:translate(65px,30px) scale(1); } 78% { transform:translate(0,0); } }
+    @media (prefers-reduced-motion: reduce) { .contact::before,.contact::after,.portrait-orbit::after,.portrait-avatar,.contact-cursor { animation:none !important; } }
     footer { font-size: 11px; color: #716a63; }
     @media (max-width: 600px) {
       header {
@@ -836,18 +897,27 @@
 
   <section id="contact">
     <div class="contact">
-      <div class="small">Є ідея? Давай обговоримо</div>
-      <h2>Зробімо відео разом.</h2>
-      <p>Напиши мені, щоб обговорити зйомку, монтаж або контент для твого бренду.</p>
-      <div class="contact-links">
-        <a class="button contact-social" href="https://www.instagram.com/asybae/" aria-label="Написати в Instagram">
-          <svg class="social-icon instagram-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.7" cy="6.7" r="1.1" fill="currentColor"/></svg>
-          <span>Написати в Instagram</span>
-        </a>
-        <a class="button contact-social" href="https://t.me/Asybae" aria-label="Написати в Telegram">
-          <svg class="social-icon telegram-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 3.8 10.7c-1.2.5-1.2 1.2-.2 1.5l4.4 1.4 1.7 5.2c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.1-2.1 4.4 3.2c.8.4 1.4.2 1.6-.8L22.3 5c.3-1.2-.5-1.7-1.3-1Z" fill="currentColor"/><path d="m8 13.4 9.7-6.1c.5-.3 1-.1.6.3l-8 7.3-.3 3.2" fill="none" stroke="#201e1d" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>Написати в Telegram</span>
-        </a>
+      <div class="contact-copy">
+        <div class="small">Є ідея? Давай обговоримо</div>
+        <h2>Зробімо відео <span>разом.</span></h2>
+        <p>Напиши мені, щоб обговорити зйомку, монтаж або контент для твого бренду.</p>
+        <div class="contact-links">
+          <a class="button contact-social" href="https://www.instagram.com/asybae/" aria-label="Написати в Instagram">
+            <svg class="social-icon instagram-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.7" cy="6.7" r="1.1" fill="currentColor"/></svg>
+            <span>Написати в Instagram</span>
+          </a>
+          <a class="button contact-social" href="https://t.me/Asybae" aria-label="Написати в Telegram">
+            <svg class="social-icon telegram-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 3.8 10.7c-1.2.5-1.2 1.2-.2 1.5l4.4 1.4 1.7 5.2c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.1-2.1 4.4 3.2c.8.4 1.4.2 1.6-.8L22.3 5c.3-1.2-.5-1.7-1.3-1Z" fill="currentColor"/><path d="m8 13.4 9.7-6.1c.5-.3 1-.1.6.3l-8 7.3-.3 3.2" fill="none" stroke="#f4edf6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Написати в Telegram</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-portrait" aria-label="Ілюстрований портрет Анастасії">
+        <div class="portrait-halo"></div><div class="portrait-orbit"></div>
+        <div class="portrait-avatar" aria-hidden="true">
+          <div class="avatar-body"></div><div class="avatar-neck"></div><div class="avatar-hair"></div><div class="avatar-face"></div><div class="avatar-glasses"><i></i><i></i></div><div class="avatar-bangs"></div>
+        </div>
+        <div class="contact-cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 2 19 14 12.5 14.8 16 22 12.8 23 9.5 15.8 5 20Z"/></svg></div>
       </div>
     </div>
   </section>
