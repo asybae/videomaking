@@ -451,9 +451,11 @@
     .contact-links .contact-social:hover { background:#fff; box-shadow:0 12px 28px rgba(109,81,137,.16),0 0 0 3px rgba(147,129,174,.08); }
     .social-icon { width:22px; height:22px; flex:0 0 22px; display:block; }
     .contact-social span { display:inline-block; }
-    .contact-portrait { position:relative; align-self:stretch; min-height:340px; display:flex; align-items:center; justify-content:center; padding:8px; }
-    .contact-portrait::before { content:""; position:absolute; width:min(100%,360px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.95),rgba(193,173,218,.35) 54%,transparent 72%); }
-    .contact-portrait img { position:relative; z-index:1; display:block; width:min(100%,300px); height:340px; object-fit:cover; object-position:center 25%; border-radius:160px 160px 28px 28px; box-shadow:0 22px 48px rgba(61,45,73,.18); }
+    .contact-portrait { position:relative; align-self:stretch; min-height:390px; display:flex; align-items:center; justify-content:center; padding:18px; isolation:isolate; }
+    .contact-portrait::before { content:""; position:absolute; z-index:-1; width:min(100%,390px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(255,255,255,.98) 0%,rgba(213,201,231,.52) 48%,rgba(213,201,231,0) 72%); }
+    .contact-portrait::after { content:"ASYBAE  /  VIDEO"; position:absolute; z-index:2; right:2%; bottom:18px; padding:10px 13px; border:1px solid rgba(255,255,255,.85); border-radius:999px; background:rgba(250,248,252,.84); color:#756681; font-size:9px; letter-spacing:2px; box-shadow:0 8px 24px rgba(61,45,73,.08); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+    .contact-portrait img { position:relative; z-index:1; display:block; width:min(100%,280px); height:360px; object-fit:cover; object-position:center 25%; border:1px solid rgba(255,255,255,.95); border-radius:180px 180px 24px 24px; padding:7px; background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(229,219,239,.88)); box-shadow:0 28px 70px rgba(61,45,73,.18),0 0 0 1px rgba(147,129,174,.16); }
+    .contact-portrait img { object-fit:cover; background-clip:padding-box; }
     @media (max-width:760px) {
       #contact { padding-top:12px; padding-bottom:12px; }
       .contact { grid-template-columns:1fr; gap:8px; padding:30px 22px 22px; border-radius:22px; }
