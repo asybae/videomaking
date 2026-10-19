@@ -562,6 +562,67 @@
       .contact-links { align-items: flex-start; width: 100%; }
       .contact-links .button { display: block; width: 100%; box-sizing: border-box; margin: 0 !important; padding: 10px 0; line-height: 1.3; text-align: left; }
     }
+
+    /* Contact portrait: full-size photo blended into the section, not a framed card */
+    #contact .contact {
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+      gap: 0;
+      padding: clamp(28px, 5vw, 64px) 0 clamp(28px, 5vw, 64px) clamp(28px, 5vw, 64px);
+      background:
+        radial-gradient(ellipse at 77% 42%, rgba(191,174,218,.30), transparent 42%),
+        linear-gradient(110deg, #fbf8f3 0%, #f2edf4 54%, #ebe3f0 100%);
+    }
+    #contact .contact-copy { max-width: 620px; padding-right: 18px; }
+    #contact .contact-photo-wrap {
+      position: relative;
+      align-self: stretch;
+      min-height: 440px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    #contact .contact-photo-wrap::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, #f2edf4 0%, rgba(242,237,244,.42) 13%, transparent 42%),
+                  linear-gradient(0deg, rgba(235,227,240,.72) 0%, transparent 24%, transparent 83%, rgba(242,237,244,.12) 100%);
+    }
+    #contact .contact-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 440px;
+      object-fit: cover;
+      object-position: center 28%;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 17%, #000 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 17%, #000 100%);
+    }
+    @media (max-width: 760px) {
+      #contact .contact {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 30px 22px 0;
+      }
+      #contact .contact-copy { padding-right: 0; }
+      #contact .contact-photo-wrap { min-height: 310px; margin: 8px -22px 0; }
+      #contact .contact-photo-wrap::before {
+        background: linear-gradient(180deg, #ebe3f0 0%, rgba(235,227,240,.2) 16%, transparent 42%, rgba(235,227,240,.12) 76%, #ebe3f0 100%);
+      }
+      #contact .contact-photo {
+        min-height: 310px;
+        height: 310px;
+        object-position: center 25%;
+        -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%);
+        mask-image: linear-gradient(180deg, transparent 0%, #000 15%, #000 82%, transparent 100%);
+      }
+    }
   </style>
 </head>
 <body>
@@ -885,7 +946,9 @@
           </a>
         </div>
       </div>
-
+      <div class="contact-photo-wrap" aria-hidden="true">
+        <img class="contact-photo" src="/9439E672-70D2-4DC5-B33A-2D88A9AC4F99.jpeg" alt="" loading="lazy" decoding="async">
+      </div>
     </div>
   </section>
 
