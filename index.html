@@ -232,6 +232,39 @@
         letter-spacing: 0;
       }
     }
+    #price .studio-calc{position:relative;isolation:isolate;overflow:hidden;max-width:820px;margin:32px auto 0;padding:clamp(22px,5vw,48px);border:1px solid rgba(147,129,174,.42);border-radius:28px;background:radial-gradient(ellipse at 90% 0%,rgba(217,207,228,.7),transparent 38%),linear-gradient(145deg,rgba(255,255,255,.9),rgba(244,240,249,.95));box-shadow:0 24px 70px rgba(87,67,105,.12),inset 0 1px 0 #fff}
+    #price .studio-calc:after{content:"";position:absolute;z-index:-1;right:-90px;bottom:60px;width:230px;height:230px;border:1px solid #9381ae30;border-radius:50%;box-shadow:0 0 0 24px #9381ae08,0 0 0 48px #9381ae06;pointer-events:none}
+    #price .calc-topline,#price .calc-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:9px;letter-spacing:1.5px;color:#8a7c91}
+    #price .calc-sound{border:1px solid #9381ae66;border-radius:30px;background:#ffffff99;padding:9px 12px;color:#554a60;font:inherit;font-size:10px;cursor:pointer}
+    #price .calc-progress{height:2px;margin:25px 0 24px;background:#9381ae30;overflow:hidden;border-radius:3px}
+    #price .calc-progress span{display:block;width:25%;height:100%;background:linear-gradient(90deg,#b8a3cf,#75618f);box-shadow:0 0 12px #b8a3cf;transition:width .35s}
+    #price .calc-label{display:block;margin-bottom:12px;font:400 clamp(24px,4vw,36px)/1.15 Georgia,serif;color:#29242f}
+    #price .calc-select-wrap{position:relative}
+    #price .calc-select{appearance:none;width:100%;padding:16px 45px 16px 16px;border:1px solid #9381ae70;border-radius:14px;background:#ffffffb8;color:#28232d;font:inherit;font-size:14px;outline:none;transition:box-shadow .2s,border-color .2s}
+    #price .calc-select:focus{border-color:#9381ae;box-shadow:0 0 0 4px #9381ae1f}
+    #price .calc-select-wrap>span{position:absolute;right:17px;top:50%;transform:translateY(-50%);color:#9381ae;pointer-events:none}
+    #price .calc-dynamic{display:grid;gap:18px;margin-top:23px;animation:calcFade .3s ease}
+    #price .calc-group{display:grid;gap:10px}
+    #price .calc-question{font-size:12px;color:#716a78;letter-spacing:.3px}
+    #price .calc-choice-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    #price .calc-choice{display:flex;align-items:flex-start;gap:9px;min-height:48px;padding:13px;border:1px solid #201e1d22;border-radius:13px;background:#ffffff80;font-size:12px;line-height:1.45;color:#49414d;cursor:pointer;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+    #price .calc-choice:hover{transform:translateY(-1px);border-color:#9381ae}
+    #price .calc-choice:has(input:checked){border-color:#9381ae;background:#d9cfe466;box-shadow:0 0 22px #9381ae18}
+    #price .calc-choice input{accent-color:#9381ae;margin-top:2px;flex-shrink:0}
+    #price .calc-input{width:100%;min-height:48px;padding:12px 14px;border:1px solid #9381ae66;border-radius:13px;background:#ffffffb8;color:#28232d;font:inherit;font-size:14px}
+    #price .calc-result{display:flex;justify-content:space-between;gap:15px;margin-top:26px;padding:22px;border:1px solid #9381ae35;border-radius:18px;background:linear-gradient(120deg,#ffffffd9,#e8e0edb8);box-shadow:0 0 35px #9381ae18}
+    #price .calc-result-kicker{display:block;font-size:9px;letter-spacing:1.5px;color:#8a7c91}
+    #price .calc-result strong{display:block;margin-top:10px;font-size:clamp(27px,5vw,42px);line-height:1.1;font-weight:500;letter-spacing:-1.5px;color:#28232d}
+    #price .calc-result p{margin:10px 0 0;font-size:11px;line-height:1.55;color:#7b727c}
+    #price .calc-spark{color:#9381ae;font-size:28px;text-shadow:0 0 22px #9381aeaa;animation:calcSpark 3s ease-in-out infinite}
+    #price .calc-submit{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:17px 20px;border:1px solid #9381ae99;border-radius:14px;background:#29242f;color:#fff;text-decoration:none;font-size:13px;box-shadow:0 8px 24px #503d652b,0 0 22px #9381ae20;transition:transform .2s,box-shadow .2s}
+    #price .calc-submit:hover{transform:translateY(-2px);box-shadow:0 12px 30px #503d653b,0 0 28px #9381ae30}
+    #price .calc-submit span{font-size:18px;color:#d9cfe4}
+    #price .calc-foot{margin-top:23px;font-size:8px;color:#a49aa7}
+    @keyframes calcFade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes calcSpark{50%{transform:rotate(45deg) scale(1.12);opacity:.65}}
+    @media(max-width:600px){#price .studio-calc{padding:20px 16px;border-radius:22px}#price .calc-choice-list{grid-template-columns:1fr}#price .calc-result{padding:17px}#price .calc-topline{font-size:8px;letter-spacing:1px}}
+    @media(prefers-reduced-motion:reduce){#price .calc-spark{animation:none}#price .calc-choice,#price .calc-submit{transition:none}}
     #price .price-grid { margin-top: 24px; }
     #price .price-grid .project { min-height: 190px; gap: 18px; }
     #price .price-grid .project strong { font-size: clamp(28px, 4vw, 42px); }
@@ -767,21 +800,27 @@
 
   <section id="price">
     <div class="small">ВАРТІСТЬ РОБІТ</div>
-    <h2>Прайс</h2>
-    <p>Зйомка та монтаж відео під ключ — від ідеї до готового ролика.</p>
-    <div class="grid price-grid">
-      <div class="project">
-        <span>01 / Зйомка + монтаж</span>
-        <strong>від 3 000 ₴</strong>
-        <p>Reels, рекламні, експертні та іміджеві відео.</p>
-      </div>
-      <div class="project">
-        <span>02 / Індивідуальний проєкт</span>
-        <strong>За запитом</strong>
-        <p>Вартість залежить від формату, тривалості зйомки та складності монтажу.</p>
-      </div>
+    <h2>Знайди свій формат <em style="font-family:Georgia,serif;color:#9381ae">відео</em></h2>
+    <p>Обери формат і деталі проєкту — калькулятор покаже попередню вартість.</p>
+    <div class="studio-calc" id="studioCalc">
+      <div class="calc-topline"><span>ASYBAE / VIDEO ESTIMATOR</span><button type="button" id="calcSound" class="calc-sound" aria-pressed="false">♫ Звук вимкнено</button></div>
+      <div class="calc-progress"><span id="calcProgress"></span></div>
+      <label class="calc-label" for="calcService">Що створюємо?</label>
+      <div class="calc-select-wrap"><select id="calcService" class="calc-select">
+        <option value="talk">Розмовні Reels</option>
+        <option value="fashion">Fashion-відео</option>
+        <option value="beauty">Beauty та косметологія</option>
+        <option value="product">Рекламне відео продукту</option>
+        <option value="event">Захід / вечірка / день народження</option>
+        <option value="conference">Конференція / конгрес / форум</option>
+        <option value="youtube">YouTube</option>
+        <option value="edit">Монтаж готового матеріалу</option>
+      </select><span>↘</span></div>
+      <div id="calcDynamic" class="calc-dynamic"></div>
+      <div class="calc-result"><div><span class="calc-result-kicker">ПОПЕРЕДНЯ ВАРТІСТЬ</span><strong id="calcTotal">Обери параметри</strong><p id="calcNote">Фінальні деталі узгодимо особисто.</p></div><div class="calc-spark" aria-hidden="true">✳</div></div>
+      <a class="calc-submit" id="calcSend" href="https://t.me/Asybae">Обговорити проєкт <span>↗</span></a>
+      <div class="calc-foot"><span>PERSONALIZED VIDEO ESTIMATE</span><span>KYIV · WORLDWIDE</span></div>
     </div>
-    <a class="button" href="#contact">Обговорити проєкт ↗</a>
   </section>
 
   <section id="about">
@@ -826,6 +865,34 @@
         button.setAttribute('aria-label', 'Превʼю недоступне. Перевірте доступ до відео Vimeo.');
       }
     });
+    (() => {
+      const service=document.getElementById("calcService"), box=document.getElementById("calcDynamic"), total=document.getElementById("calcTotal"), note=document.getElementById("calcNote"), sound=document.getElementById("calcSound"), bar=document.getElementById("calcProgress");
+      let soundOn=false,ctx;
+      function tick(){if(!soundOn)return;try{ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator(),g=ctx.createGain();o.type="sine";o.frequency.value=740;g.gain.value=.025;o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+.055)}catch(e){}}
+      sound.addEventListener("click",()=>{soundOn=!soundOn;sound.textContent=soundOn?"♫ Звук увімкнено":"♫ Звук вимкнено";sound.setAttribute("aria-pressed",String(soundOn));tick()});
+      function field(title,name,items,type="radio"){const w=document.createElement("div");w.className="calc-group";const h=document.createElement("div");h.className="calc-question";h.textContent=title;w.appendChild(h);if(type==="number"){const i=document.createElement("input");i.className="calc-input";i.type="number";i.min=1;i.max=24;i.value=items||1;i.name=name;i.setAttribute("aria-label",title);w.appendChild(i)}else{const l=document.createElement("div");l.className="calc-choice-list";items.forEach((it,n)=>{const lab=document.createElement("label");lab.className="calc-choice";const i=document.createElement("input");i.type=type;i.name=name;i.value=it[0];i.checked=n===0;const t=document.createElement("span");t.textContent=it[1];lab.append(i,t);l.appendChild(lab)});w.appendChild(l)}box.appendChild(w)}
+      const v=name=>box.querySelector('[name="'+name+'"]:checked')?.value||"";
+      const num=name=>Math.max(1,Number(box.querySelector('[name="'+name+'"]')?.value||1));
+      function render(){box.innerHTML="";const s=service.value;bar.style.width=(s==="talk"||s==="fashion")?"45%":"100%";
+        if(s==="talk"){field("Кількість розмовних відео","qty",[["1","1 відео"],["3","3 відео"],["5","5 відео"],["10","10 відео"]]);field("Тип монтажу","style",[["basic","Базовий монтаж · 850 грн / відео"],["dynamic","Динамічний монтаж · 1 850 грн / відео"]])}
+        else if(s==="fashion"){field("Оберіть формат","fashionType",[["one","1 відео до 60 секунд · 3 000 грн"],["three","3 відео до 20 секунд · 3 000 грн"]])}
+        else if(s==="beauty"){field("Формат відео","beautyType",[["expert","Експертне до 60 секунд · 1 850 грн"],["procedure","Естетичне відео процедури · 3 500 грн"],["seminar","Відео семінару · 150 €"]]);field("Потрібна окрема зйомка всього семінару без монтажу?","fullSeminar",[["no","Ні"],["yes","Так · +100 €"]])}
+        else if(s==="product"){field("Кількість рекламних відео","qty",[["1","1 відео"],["2","2 відео"],["3","3 відео"],["5","5 відео"]]);field("Монтаж","productStyle",[["basic","Базовий · 850 грн"],["complex","Складний · 1 350 грн"]])}
+        else if(s==="event"||s==="conference"){field("Який захід планується?","eventType",[["corp","Корпоратив"],["party","Вечірка"],["birthday","День народження"],["wedding","Весілля"],["conference","Конференція / конгрес / форум"],["other","Інший захід"]]);field("Тривалість зйомки (години)","hours",4,"number");field("Додаткова камера?","camera",[["no","Не потрібна"],["yes","+100 € за кожні 2 години"]]);field("Формат замовлення","eventPackage",[["package","Фото + 2 змонтовані відео"],["video","Лише відеозйомка"]])}
+        else if(s==="youtube"){field("Кількість годин зйомки","hours",1,"number");field("Кількість відео для монтажу","qty",[["0","Без монтажу"],["1","1 відео · 2 500 грн"],["2","2 відео · 5 000 грн"],["3","3 відео · 7 500 грн"]])}
+        else{field("Тип монтажу","editType",[["basic","Базовий"],["dynamic","Динамічний"],["animation","Анімаційний"],["youtube","YouTube"]]);field("Тривалість готового відео","duration",[["30","До 30 секунд"],["40","До 40 секунд"],["50","До 50 секунд"],["60","До 60 секунд"],["90","До 1,5 хвилини"],["yt15","YouTube до 15 хвилин"],["yt30","YouTube до 30 хвилин"]]);field("Кількість відео","qty",[["1","1 відео"],["2","2 відео"],["3","3 відео"],["5","5 відео"]]);field("Пакетний монтаж 10 хвилин готового матеріалу","package",[["no","Розрахувати за роликами"],["basic","Базовий · 6 690 грн"],["dynamic","Динамічний · 12 550 грн"],["animation","Анімаційний · 20 350 грн"]])}
+        box.querySelectorAll('input').forEach(i=>i.addEventListener("change",()=>{tick();calc()}));box.querySelectorAll('input[type="number"]').forEach(i=>i.addEventListener("input",calc));calc()}
+      function calc(){const s=service.value;let u=0,e=0,d="";
+        if(s==="talk"){u=Number(v("qty")||1)*(1000+(v("style")==="dynamic"?1850:850));d="Зйомка — 1 000 грн за кожне відео. Тривалість розмовного ролика не впливає на ціну."}
+        else if(s==="fashion"){u=3000;d="Зйомка та монтаж включені у фіксовану вартість."}
+        else if(s==="beauty"){if(v("beautyType")==="expert")u=1850;if(v("beautyType")==="procedure")u=3500;if(v("beautyType")==="seminar")e=150;if(v("beautyType")==="seminar"&&v("fullSeminar")==="yes")e+=100;d="Експертне відео — до 60 секунд. Повна зйомка семінару без монтажу додається за 100 €."}
+        else if(s==="product"){u=Number(v("qty")||1)*(3500+(v("productStyle")==="complex"?1350:850));d="Попередній розрахунок: зйомка 3 500 грн за відео та обраний монтаж. Уточнимо відповідність формату."}
+        else if(s==="event"||s==="conference"){const h=num("hours");e=300+Math.max(0,h-6)*50;if(v("camera")==="yes")e+=Math.ceil(h/2)*100;d=v("eventPackage")==="package"?"Пакет: фотозйомка та 2 змонтовані відео. Додаткові короткі ролики узгоджуються окремо.":"Обрано лише відеозйомку. Склад пакета уточнимо особисто."}
+        else if(s==="youtube"){e=num("hours")*100;u=Number(v("qty")||0)*2500;d="Зйомка — 100 € за годину. Монтаж — 2 500 грн за ролик."}
+        else{const p=v("package"),t=v("editType"),dur=v("duration"),q=Number(v("qty")||1);if(p&&p!=="no")u=({basic:6690,dynamic:12550,animation:20350})[p]||0;else if(t==="youtube")u=(dur==="yt15"?2200:dur==="yt30"?5000:0)*q;else{const prices={basic:{"30":500,"40":500,"50":700,"60":700,"90":900},dynamic:{"30":1150,"40":1150,"50":1350,"60":1350,"90":1650},animation:{"30":1650,"40":1850,"50":1950,"60":2150}};u=(prices[t]?.[dur]||0)*q}d="Монтаж готового матеріалу без зйомки. Ціна залежить від складності та тривалості."}
+        const parts=[];if(u)parts.push(new Intl.NumberFormat("uk-UA").format(u)+" грн");if(e)parts.push(e+" €");total.textContent=parts.join(" + ")||"Обери параметри";note.textContent=d;const msg="Вітаю! Хочу обговорити проєкт: "+service.options[service.selectedIndex].text+". Попередній розрахунок: "+(parts.join(" + ")||"потрібна консультація")+". "+d;document.getElementById("calcSend").href="https://t.me/Asybae?text="+encodeURIComponent(msg)}
+      service.addEventListener("change",()=>{tick();render()});render();
+    })();
     const modal = document.getElementById('videoModal');
     const modalFrame = modal.querySelector('iframe');
     function closeVideo() {
