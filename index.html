@@ -16,6 +16,10 @@
   }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '2059665228067857');
   fbq('track', 'PageView');
+  document.addEventListener('click', function(event) {
+    const telegramLink = event.target.closest('a[href*="t.me/"]');
+    if (telegramLink && typeof fbq === 'function') fbq('track', 'Contact');
+  });
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=2059665228067857&ev=PageView&noscript=1"
